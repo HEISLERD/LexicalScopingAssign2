@@ -1,0 +1,57 @@
+## These functions create a square matrix, saves the matrix, finds its inverse
+## and then stores this inverse. If we call for the inverse of this matrix at some
+##later point in our analysis, our function looks to check if the inverse of our
+## matrix is the same (in other words, our matrix doesn't change), if so, it uses the already saved inverse value. If not,
+## it computes a new inverse based on a newly created matrix.
+
+## This part of the function is what sets the value of our matrix, gets its value, 
+## finds its inverse, and subsequently gets the inverse of our matrix. This part 
+## of the overall function sets the remaining portion of the function up to work
+## correctly
+
+makeCacheMatrix <- function(x = matrix()) {
+            ## arbitrary variable used as a placeholder for later on
+            i <<- NULL
+            ## sets the value of our matrix and allows for our function to search 
+            ## through multiple environments using the '<<-' operator
+            setMatrix <- function(){
+                  x <<- y
+                  m <<- NULL
+              }
+            ## gets the matrix 
+            getMatrix <- function(x) {
+                x
+            }
+            ## caches the matrix's inverse using the solve function
+            CacheInverse <- function(solve) {
+                 i <<- solve 
+            }
+            ## gets the inverse
+            getInverse <- function() {
+                cache
+            }
+            ## lists the value for the above variables
+            list(setMatrix = setMatrix, getMatrix = getMatrix, 
+                 CacheInverse = CacheInverse, getInverse = getInverse)
+}
+
+
+## Write a short comment describing this function
+
+cacheSolve <- function(x, ...) {
+            ## looks for a cahced value 
+            inverse <- x$getInverse()
+            ## if the value exists, the function returns it
+            if(!is.null(inverse)) {
+                    message("getting cached data")
+                    return(inverse)
+            }
+            ## if the value doesn't, the function creates a new one and returns it
+            new <- x$getMatrix
+            inverse <- solve(new)
+            x$CacheMatrix(inverse)
+    
+            inverse
+    
+    ## Return a matrix that is the inverse of 'x'
+}
